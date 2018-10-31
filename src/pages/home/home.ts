@@ -11,4 +11,13 @@ export class HomePage {
 
   }
 
+  onclickLoginButton()
+  {
+    this.navCtrl.push('SigninPage')
+  }
+
+  onclickRegisterButton()
+  {
+    this.navCtrl.push('SignupPage')
+  }
 }

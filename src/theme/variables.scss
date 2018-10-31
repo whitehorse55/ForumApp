@@ -35,12 +35,103 @@ $app-direction: ltr;
 
 $colors: (
   primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
+  secondary:  #70b849,
+  danger:     #0a0909,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  facebook:   #3b5998,
+  twitter:    #429cd6,
+  gmail:      #df4b37,
+  extralight: #fff,
+  graycolor : #cecece,
+  lightbg  :  #f8f8f8,
 );
 
+
+$custom_colors : (
+  gradient_color :linear-gradient(180deg, rgba(244,243,249,1) 24%, rgba(112,184,73,1) 76%, rgba(112,184,73,1) 90%),
+  maingradient : linear-gradient(150deg, rgb(128, 212, 97) 24%, rgb(39,181,247) 66%, rgb(39,181,247) 66%),
+  mainbutton : rgb(119, 214, 84),
+
+);
+
+$border_radius : (
+  radius_5 : 10px,
+  radius_10 : 20px,
+  radius_15 : 30px,
+  radius_20 : 40px,
+  radius_25 : 50px,
+  radius_30 : 60px,
+);
+
+
+
+$custom_padding : (
+  padding_10 : 10px,
+  padding_20 : 20px,
+  padding_30 : 30px,
+  padding_40 : 40px,
+  padding_50 : 50px,
+  padding_60 : 60px,
+);
+
+$custom_font : (
+  font_10 : 10pt,
+  font_11 : 11pt,
+  font_12 : 12pt,
+  font_13 : 13pt,
+  font_14 : 14pt,
+  font_15 : 15pt,
+  font_16 : 16pt,
+  font_17 : 17pt,
+  font_18 : 18pt,
+  font_19 : 19pt,
+  font_20 : 20pt,
+  font_21 : 21pt,
+  font_22 : 22pt,
+  font_23 : 23pt,
+  font_24 : 24pt,
+);
+
+$font: (
+  big:          2.3rem,
+  extramedium:  1.9rem,
+  largemedium:  1.6rem,
+  medium:       1.5rem,
+  small:        1.5rem,
+  bitsmall:     1.4rem,
+  smallbtn:     1.3rem,
+);
+
+//margin
+
+$margin: (
+  big:      32px,
+  medium:   16px,
+  small:    8px,
+  bitsmall: 4px,
+);
+
+
+$height:(
+  btnheight: 4rem,
+  roundbtn:  5rem,
+  propic:  15rem,
+  smallbtn: 3rem,
+  large:    7rem,
+);
+
+
+$width:(
+  logo: 14rem,
+  roundbtn:  5rem,
+  propic:  15rem,
+  btnwidth: 4rem,
+);
+
+$toolbar-md-title-text-color: #70b849;
+$toolbar-ios-title-text-color: #70b849;
+$toolbar-wp-title-text-color: #70b849;
 
 // App iOS Variables
 // --------------------------------------------------

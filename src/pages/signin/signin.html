@@ -1,0 +1,37 @@
+<ion-content padding>
+  <div class="center_screen">
+    <!-- <img class="logo" src="assets/img/logo.svg" alt="Logo"> -->
+    <div class="input_area">
+      <ion-icon name="md-person"></ion-icon>
+      <input type="text" name="useremail" [(ngModel)]="credential.useremail" placeholder="E-mail">
+    </div>
+    <div class="input_area">
+      <ion-icon name="md-lock"></ion-icon>
+      <input type="password" name="userpassword" [(ngModel)]="credential.userpassword" placeholder="Password">
+    </div>
+
+    <button [style.margin-top.px]="20" ion-button full color="secondary" round (tap)="gotomain()">Log in</button>
+
+    <div class="forgotpassword_section">
+      <button ion-button icon-left clear small color=extralight (tap)="gotoforgotpassword()">
+        <ion-icon name="md-key"></ion-icon>
+        Lost password?
+      </button>
+      <button ion-button icon-left clear small color=extralight (tap)="gotosignup()">
+        <ion-icon name="md-person-add"></ion-icon>
+        New member
+      </button>
+    </div>
+  </div>
+  <ion-footer>
+    <button ion-button icon-left color="facebook">
+      <ion-icon name="logo-facebook"></ion-icon>
+      facebook
+    </button>
+
+    <button ion-button icon-left color="gmail">
+      <ion-icon name="logo-googleplus"></ion-icon>
+      G-mail
+    </button>
+  </ion-footer>
+</ion-content>

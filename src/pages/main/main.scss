@@ -1,0 +1,21 @@
+page-main {
+    .content {
+        background: map-get($map: $custom_colors, $key:maingradient);
+        ion-item {
+            background-color: transparent;
+            button {
+                border-radius: map-get($map: $border_radius, $key:radius_10);
+                background-color: map-get($map: $custom_colors, $key:mainbutton);
+                width: 90%;
+                -moz-box-shadow: 2px 3px 4px rgba(0, 0, 0, .5);
+                -webkit-box-shadow: 2px 3px 4px rgba(0, 0, 0, .5);
+                 box-shadow: 2px 3px 4px rgba(0, 0, 0, .5); // height: 100px;
+                 font-size: map-get($map: $custom_font, $key: font_13);
+                //  color : map-get($map: $colors, $key:primary)
+            }
+        }
+        ion-item:first-child {
+            margin-top: 30vh;
+        }
+    }
+}

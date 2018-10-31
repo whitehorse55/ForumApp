@@ -1,0 +1,65 @@
+<!--
+  Generated template for the SignupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>signup</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="content" padding>
+  <div class="center_screen">
+
+    <div class="pro-pic-change">
+      <div class="image">
+        <img src="assets/imgs/man2.jpeg"/>
+      </div>
+      <button ion-button round outline color=primary (tap)="changeprofilepic()">
+        <ion-icon name="md-camera"></ion-icon>
+      </button>
+    </div>
+
+    <div class="input_area">
+      <ion-icon name="md-person"></ion-icon>
+      <input type="text" [(ngModel)]="credential.name" placeholder="Name">
+    </div>
+    <div class="input_area">
+      <ion-icon name="md-mail"></ion-icon>
+      <input type="text" [(ngModel)]="credential.email" placeholder="E-mail Id">
+    </div>
+    <div class="input_area">
+      <ion-icon name="ios-navigate"></ion-icon>
+      <input type="text" [(ngModel)]="credential.location"  placeholder="Location">
+    </div>
+
+    <!-- <div class="input_area">
+      <ion-icon name="ios-man"></ion-icon>
+      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="credential.birth" placeholder="Date of Birth"></ion-datetime>
+    </div>
+
+    <div class="input_area">
+      <ion-icon name="md-male"></ion-icon>
+      <ion-select interface="action-sheet"  [(ngModel)]="credential.gender" placeholder="Select gender">
+        <ion-option>Male</ion-option>
+        <ion-option>Female</ion-option>
+      </ion-select>
+    </div> -->
+
+    <div class="input_area">
+      <ion-icon name="md-lock"></ion-icon>
+      <input type="password" [(ngModel)]="credential.password" placeholder="Password">
+    </div>
+    <div class="input_area">
+      <ion-icon name="md-lock"></ion-icon>
+      <input type="password"  [(ngModel)]="credential.confirmpassword"  placeholder="Confirm Password">
+    </div>
+    <button ion-button margin-top full color="primary" round (click)="onclickSignup()" >Sign up</button>
+  </div>
+
+</ion-content>
