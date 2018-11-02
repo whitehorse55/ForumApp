@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 /**
  * Generated class for the ForumFavoriteItemComponent component.
@@ -14,9 +14,21 @@ export class ForumFavoriteItemComponent {
 
   text: string;
 
+  @Input() info : any
+  @Input() index : any
+
   constructor() {
     console.log('Hello ForumFavoriteItemComponent Component');
     this.text = 'Hello World';
   }
 
+  onclicklike(ind)
+  {
+
+  }
+
+  onclickUnlike(ind)
+  {
+
+  }
 }

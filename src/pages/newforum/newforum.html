@@ -5,14 +5,56 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>newforum</ion-title>
-  </ion-navbar>
-
+  <ion-toolbar text-center color="extralight">
+      <ion-buttons right>
+        <button color="secondary" ion-button icon-only (click)="onclickbackbutton()">
+          <ion-icon ios="ios-close" md="md-close"></ion-icon>
+        </button>
+      </ion-buttons>
+    <ion-title text-center>Add</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="content" padding>
+  <ion-item>
+    <ion-label floating>Title</ion-label>
+    <ion-input [(ngModel)]="title" type=""></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Add text</ion-label>
+    <ion-textarea [(ngModel)]="question"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Category : </ion-label>
+    <ion-select class="myCustomSelect" [(ngModel)]="category" name="category">
+      <ion-option *ngFor="let item of categoryList" value="{{item.ca_id}}">{{item.ca_name}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+
+
+  <ion-item no-lines>
+    <customcamera [title]="'take a photo'" [type]="'photo'" (onclickButton)="getPhoto($event)"></customcamera>
+  </ion-item>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 *ngFor="let photo of photos; let id = index">
+        <ion-card class="block">
+          <ion-icon name="trash" class="deleteIcon"  color="primary" (click)="deletePhoto(id)"></ion-icon>
+          <img [src]="photo" *ngIf="photo" />
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 
 </ion-content>
+
+<ion-footer text-center>
+  <button ion-button class="mybutton" color="mainbutton"  (click)="onclickSendButton()">Send</button>
+</ion-footer>

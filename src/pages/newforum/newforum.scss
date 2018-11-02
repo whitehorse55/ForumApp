@@ -1,3 +1,34 @@
 page-newforum {
+    .content {
+      border-radius: map-get($map: $border_radius, $key: radius_5);
+        ion-item {
+            ion-textarea {
+                min-height: 100px;
+            }
+            .myCustomSelect {
+                max-width: 100% !important;
+            }
+        }
+        .block {
+            position: relative;
+            .deleteIcon {
+                position: absolute !important;
+                color: #ffffff !important;
+                margin-left: 80% !important;
+            }
+            .deleteIcon:before {
+                font-size: 30px !important;
+            }
+        }
 
+
+    }
+
+    ion-footer {
+      .mybutton{
+          margin-bottom: map-get($map: $margin, $key:medium);
+          width: 80%;
+          border-radius: map-get($map: $border_radius, $key: radius_5);
+      }
+  }
 }

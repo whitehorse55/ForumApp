@@ -12,7 +12,12 @@ import { ApiProvider } from '../providers/api/api';
 import { AuthProvider } from '../providers/auth/auth';
 import { CustomalertProvider } from '../providers/customalert/customalert';
 import { HttpModule } from '@angular/http';
-
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { ToastserviceProvider } from '../providers/toastservice/toastservice';
+import { HTTP } from '@ionic-native/http';
+import { File } from '@ionic-native/file';
+import { FilePath } from '@ionic-native/file-path';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 @NgModule({
   declarations: [
     MyApp,
@@ -36,7 +41,13 @@ import { HttpModule } from '@angular/http';
     ApiProvider,
     AuthProvider,
     CustomalertProvider,
-
+    Camera,
+    ToastserviceProvider,
+    HTTP,
+    File,
+    FilePath,
+    FileTransfer,
+    FileTransferObject
   ]
 })
 export class AppModule {}

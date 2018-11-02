@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
+import { Constant } from '../../Constant/constant';
 
 /**
  * Generated class for the ForumItemComponent component.
@@ -12,11 +14,28 @@ import { Component } from '@angular/core';
 })
 export class ForumItemComponent {
 
-  text: string;
+  @Input() index : any
+  @Input()
+  set info(info)
+  {
+    console.log("this is info", info);
+    this.myinfo = info
+  }
+
+  @Output() clickItem : EventEmitter<any> = new EventEmitter();
+
+  myinfo: any;
+  myphoto = Constant.PHOTO_URL
 
   constructor() {
+    this.myphoto = Constant.PHOTO_URL
     console.log('Hello ForumItemComponent Component');
-    this.text = 'Hello World';
+
+  }
+
+  onclickanswerbutton(index)
+  {
+    this.clickItem.emit(index)
   }
 
 }

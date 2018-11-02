@@ -40,17 +40,18 @@ export class SigninPage {
 
   gotomain() {
 
-    this.authprovider.login(this.credential).then(res=>{
-      this.apiservice.userLogin(this.credential).then(re=>{
-        this.navCtrl.setRoot("MainPage");
-      }).catch(er=>{
-      //  this.alertservice.presentAlert('Login failed',er)
-      this.alertprovider.presentAlert('Login failed',er['msg'])
-      });
-    }).catch(er=>{
-        this.alertprovider.presentAlert('Login failed','Please check Email and Password again!')
-    })
+    this.navCtrl.setRoot("MainPage");
 
+    // this.authprovider.login(this.credential).then(res=>{
+    //   this.apiservice.userLogin(this.credential).then(re=>{
+    //     this.navCtrl.setRoot("MainPage");
+    //   }).catch(er=>{
+    //   //  this.alertservice.presentAlert('Login failed',er)
+    //   this.alertprovider.presentAlert('Login failed',er['msg'])
+    //   });
+    // }).catch(er=>{
+    //     this.alertprovider.presentAlert('Login failed','Please check Email and Password again!')
+    // })
   }
 
   gotoforgotpassword() {}
