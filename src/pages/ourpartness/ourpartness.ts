@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { LoadingProvider } from './../../providers/loading/loading';
+import { ApiProvider } from "./../../providers/api/api";
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
 
 /**
  * Generated class for the OurpartnessPage page.
@@ -10,20 +13,47 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-ourpartness',
-  templateUrl: 'ourpartness.html',
+  selector: "page-ourpartness",
+  templateUrl: "ourpartness.html"
 })
 export class OurpartnessPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  banner_array : any
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public apiservice: ApiProvider,
+    public loadingprovider:LoadingProvider,
+    public inappbrowser : InAppBrowser
+  ) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad OurpartnessPage');
+    this.banner_array = []
+    console.log("ionViewDidLoad OurpartnessPage");
   }
 
-  onclickbackbutton(event)
+  ionViewWillEnter(){
+    this.getBannerInfo()
+  }
+
+  getBannerInfo()
   {
-    this.navCtrl.pop()
+    this.loadingprovider.showLoadingView()
+    this.apiservice.getBannerInfo().then(res=>{
+        this.loadingprovider.removeLoadingView()
+        this.banner_array = res['data'];
+    }).catch(er=>{
+      this.loadingprovider.removeLoadingView()
+    })
+  }
+
+  onclickbackbutton(event) {
+    this.navCtrl.pop();
+  }
+
+  onclickurl(url)
+  {
+    var inappbrowser = this.inappbrowser.create(url,'_blank')
+    inappbrowser.show()
   }
 }

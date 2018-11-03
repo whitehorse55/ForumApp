@@ -1,3 +1,4 @@
+import { ApiProvider } from './../../providers/api/api';
 import { EventEmitter } from '@angular/core';
 import { Component, Input, Output } from '@angular/core';
 import { Constant } from '../../Constant/constant';
@@ -20,6 +21,7 @@ export class ForumItemComponent {
   {
     console.log("this is info", info);
     this.myinfo = info
+    this.getAnswers()
   }
 
   @Output() clickItem : EventEmitter<any> = new EventEmitter();
@@ -27,10 +29,21 @@ export class ForumItemComponent {
   myinfo: any;
   myphoto = Constant.PHOTO_URL
 
-  constructor() {
+  answer_num = 0;
+
+  constructor(public apiservice : ApiProvider) {
     this.myphoto = Constant.PHOTO_URL
     console.log('Hello ForumItemComponent Component');
 
+  }
+
+  getAnswers()
+  {
+    this.apiservice.getAnswersById(this.myinfo['fo_id']).then(res=>{
+      this.answer_num = res['data'].length
+    }).catch(er=>{
+
+    })
   }
 
   onclickanswerbutton(index)

@@ -1,0 +1,11 @@
+
+<ion-card>
+  <img *ngIf="myinfo.pa_image"  src="{{banner_url}}{{myinfo.pa_image}}"/>
+  <ion-card-content>
+    <p>
+      {{myinfo.pa_content}}
+    </p>
+    <p (tap)="onclickUrl(myinfo.pa_url)" style="color : rgb(119, 214, 84);">{{myinfo.pa_url}}</p>
+  </ion-card-content>
+
+</ion-card>

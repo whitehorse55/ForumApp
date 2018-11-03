@@ -26,7 +26,7 @@
               <p *ngIf="myinfo.content">{{myinfo.content}}</p>
           </ion-item>
         </ion-list-header>
-    <forum-favorite-item [info]="item" [index] = "i" *ngFor="let item of answerArray; let i = index;" ></forum-favorite-item>
+    <forum-favorite-item [info]="item" [index] = "i" (clickLike)="onclicklikebutton($event)" (clickUnLike)="onclickunlikebutton($event)" *ngFor="let item of answerArray; let i = index;" ></forum-favorite-item>
   </ion-list>
 
 

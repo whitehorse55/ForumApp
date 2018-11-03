@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ApiProvider } from "./../../providers/api/api";
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { LocalstorageProvider } from "../../providers/localstorage/localstorage";
 
 /**
  * Generated class for the MainPage page.
@@ -10,36 +12,48 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-main',
-  templateUrl: 'main.html',
+  selector: "page-main",
+  templateUrl: "main.html"
 })
 export class MainPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public apiservice: ApiProvider,
+    public localprovider : LocalstorageProvider
+  ) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MainPage');
+    console.log("ionViewDidLoad MainPage");
+    this.saveUserInfo();
   }
 
-  onclickForum()
+  saveUserInfo()
   {
-    this.navCtrl.push('ForumPage');
+    let userid = this.localprovider.getUserId()
+
+    this.apiservice.getUserInfo(userid).then(res=>{
+        console.log(res)
+        this.localprovider.saveUserInfo(res[0])
+        this.localprovider.saveLoginStatus(true)
+    }).catch(er=>{
+
+    })
   }
 
-  onclickOurpartness()
-  {
-    this.navCtrl.push('OurpartnessPage');
+  onclickForum() {
+    this.navCtrl.push("ForumPage");
   }
 
-  onclickHouseRoles()
-  {
-    this.navCtrl.push('HouserulePage');
+  onclickOurpartness() {
+    this.navCtrl.push("OurpartnessPage");
   }
 
-  onclickContact()
-  {
-    this.navCtrl.push('ContactadminPage');
+  onclickHouseRoles() {
+    this.navCtrl.push("HouserulePage");
   }
 
+  onclickContact() {
+    this.navCtrl.push("ContactadminPage");
+  }
 }

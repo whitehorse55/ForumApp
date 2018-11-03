@@ -4,7 +4,7 @@
         <img  src="assets/imgs/man2.jpeg"/>
       </ion-avatar>
       <div class="post_user_details">
-        <h2>{{info.name}}</h2>
+        <h2>{{myinfo.name}}</h2>
       </div>
       <!-- <button ion-button clear icon-only color="bordercolor" (tap)="postpopover($event)"> -->
       <!-- <button ion-button clear icon-only color="bordercolor" >
@@ -16,23 +16,24 @@
     <!-- <img  class="forum_image" *ngIf="myinfo.photo != ''"  src="{{myphoto}}{{myinfo.photo}}"/> -->
 
     <ion-card-content>
-      <p>{{info.an_content}}</p>
+      <p>{{myinfo.an_content}}</p>
     </ion-card-content>
 
     <ion-row>
       <ion-col col-6 center text-center>
         <button (click)="onclicklike(index)"   ion-button icon-left clear small>
             <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon>
-          <ion-label>4 answers</ion-label>
+          <!-- <ion-label style="color :  rgb(119, 214, 84);">{{getLikeNumber()}}</ion-label> -->
+          <ion-label style="color :  rgb(119, 214, 84);">{{like_num}}</ion-label>
         </button>
       </ion-col>
 
       <ion-col col-6 center text-center>
           <button (click)="onclickUnlike(index)"   ion-button icon-left clear small>
               <ion-icon ios="ios-thumbs-down" md="md-thumbs-down"></ion-icon>
-            <ion-label>4 answers</ion-label>
+            <!-- <ion-label style="color :  rgb(119, 214, 84);">{{getUnLikeNumber()}}</ion-label> -->
+            <ion-label style="color :  rgb(119, 214, 84);">{{unlike_num}}</ion-label>
           </button>
         </ion-col>
-
     </ion-row>
     </ion-card>

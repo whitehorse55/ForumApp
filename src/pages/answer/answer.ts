@@ -1,4 +1,4 @@
-import { ToastserviceProvider } from './../../providers/toastservice/toastservice';
+import { ToastserviceProvider } from "./../../providers/toastservice/toastservice";
 import { ApiProvider } from "./../../providers/api/api";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
@@ -22,27 +22,26 @@ export class AnswerPage {
 
   message: any;
 
-  answerArray : any
+  answerArray: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public apiservice: ApiProvider,
-    public toastservice : ToastserviceProvider
+    public toastservice: ToastserviceProvider
   ) {
     this.myinfo = {};
     this.message = "";
   }
 
   ionViewDidLoad() {
-    this.answerArray = []
+    this.answerArray = [];
     this.myphoto = Constant.PHOTO_URL;
     this.myinfo = this.navParams.get("info");
     console.log("ionViewDidLoad", this.myinfo);
-
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.getAnswersList();
   }
 
@@ -54,19 +53,48 @@ export class AnswerPage {
     this.apiservice
       .getAnswersById(this.myinfo["fo_id"])
       .then(res => {
-        this.answerArray = res['data']
+        this.answerArray = res["data"];
       })
       .catch(er => {});
   }
 
   onclickSendButton() {
-    this.apiservice.addNewAnswers(this.myinfo["fo_id"], this.message).then(res=>{
-      this.message = ""
-      this.toastservice.create(Constant.RESULT_SUCCESS, false, 2000)
-      this.getAnswersList();
-    }).catch(er=>{
-      this.toastservice.create(Constant.RESULT_FAIL, false, 2000)
-    })
+    this.apiservice
+      .addNewAnswers(this.myinfo["fo_id"], this.message)
+      .then(res => {
+        this.message = "";
+        this.toastservice.create(Constant.RESULT_SUCCESS, false, 2000);
+        this.getAnswersList();
+      })
+      .catch(er => {
+        this.toastservice.create(Constant.RESULT_FAIL, false, 2000);
+      });
   }
+
+  onclicklikebutton(ind) {
+    let info = this.answerArray[ind];
+    this.apiservice
+      .addLike(info["an_id"])
+      .then(res => {
+        this.toastservice.create(res["msg"], false, 2000);
+      })
+      .then(er => {
+        this.toastservice.create(er, false, 2000);
+      });
+  }
+
+  onclickunlikebutton(ind) {
+    let info = this.answerArray[ind];
+    this.apiservice
+      .addUnLike(info["an_id"])
+      .then(res => {
+        this.toastservice.create(res["msg"], false, 2000);
+
+      })
+      .then(er => {
+        this.toastservice.create(er, false, 2000);
+      });
+  }
+
 
 }

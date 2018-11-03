@@ -1,3 +1,4 @@
+import { LoadingProvider } from './../../providers/loading/loading';
 import { CustomalertProvider } from './../../providers/customalert/customalert';
 
 
@@ -6,6 +7,7 @@ import { ApiProvider } from './../../providers/api/api';
 
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { LocalstorageProvider } from '../../providers/localstorage/localstorage';
 
 /**
  * Generated class for the SigninPage page.
@@ -28,8 +30,9 @@ export class SigninPage {
     public navParams: NavParams,
     public apiservice: ApiProvider,
     public authprovider : AuthProvider,
-    public alertprovider : CustomalertProvider
-
+    public alertprovider : CustomalertProvider,
+    public loadingprovider : LoadingProvider,
+    public localprovider : LocalstorageProvider
   ) {
     this.credential = {useremail : "", userpassword : ""};
   }
@@ -39,19 +42,25 @@ export class SigninPage {
   }
 
   gotomain() {
+    this.loadingprovider.showLoadingView()
+    this.authprovider.login(this.credential).then(res=>{
+      this.apiservice.userLogin(this.credential).then(re=>{
 
-    this.navCtrl.setRoot("MainPage");
+        this.localprovider.saveLoginStatus(true)
+        this.localprovider.saveUserId(re[0]['userId'])
+        this.localprovider.saveUserInfo(re)
+        this.loadingprovider.removeLoadingView()
+        this.navCtrl.setRoot("MainPage");
 
-    // this.authprovider.login(this.credential).then(res=>{
-    //   this.apiservice.userLogin(this.credential).then(re=>{
-    //     this.navCtrl.setRoot("MainPage");
-    //   }).catch(er=>{
-    //   //  this.alertservice.presentAlert('Login failed',er)
-    //   this.alertprovider.presentAlert('Login failed',er['msg'])
-    //   });
-    // }).catch(er=>{
-    //     this.alertprovider.presentAlert('Login failed','Please check Email and Password again!')
-    // })
+      }).catch(er=>{
+      //  this.alertservice.presentAlert('Login failed',er)
+      this.alertprovider.presentAlert('Login failed',er['msg'])
+      this.loadingprovider.removeLoadingView()
+      });
+    }).catch(er=>{
+        this.loadingprovider.removeLoadingView()
+        this.alertprovider.presentAlert('Login failed','Please check Email and Password again!')
+    })
   }
 
   gotoforgotpassword() {}

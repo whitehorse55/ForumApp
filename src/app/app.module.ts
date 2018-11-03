@@ -18,6 +18,9 @@ import { HTTP } from '@ionic-native/http';
 import { File } from '@ionic-native/file';
 import { FilePath } from '@ionic-native/file-path';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { LocalstorageProvider } from '../providers/localstorage/localstorage';
+import { LoadingProvider } from '../providers/loading/loading';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 @NgModule({
   declarations: [
     MyApp,
@@ -47,7 +50,10 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
     File,
     FilePath,
     FileTransfer,
-    FileTransferObject
+    FileTransferObject,
+    LocalstorageProvider,
+    LoadingProvider,
+    InAppBrowser
   ]
 })
 export class AppModule {}

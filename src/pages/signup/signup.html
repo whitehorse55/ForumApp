@@ -18,9 +18,10 @@
 
     <div class="pro-pic-change">
       <div class="image">
-        <img src="assets/imgs/man2.jpeg"/>
+        <img *ngIf="base64Image != ''"  src="{{base64Image}}"/>
+        <img *ngIf="base64Image == ''"  src="assets/imgs/profile.png"/>
       </div>
-      <button ion-button round outline color=primary (tap)="changeprofilepic()">
+      <button ion-button round outline color=primary (tap)="presentActionSheet()">
         <ion-icon name="md-camera"></ion-icon>
       </button>
     </div>
