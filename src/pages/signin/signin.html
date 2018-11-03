@@ -1,4 +1,5 @@
 <ion-content padding>
+  <div class="layer"></div>
   <div class="center_screen">
     <!-- <img class="logo" src="assets/img/logo.svg" alt="Logo"> -->
     <div class="input_area">
@@ -10,14 +11,14 @@
       <input type="password" name="userpassword" [(ngModel)]="credential.userpassword" placeholder="Password">
     </div>
 
-    <button [style.margin-top.px]="20" ion-button full color="secondary" round (tap)="gotomain()">Log in</button>
+    <button [style.margin-top.px]="20" ion-button full color="mainbutton" round (click)="gotomain()">Log in</button>
 
     <div class="forgotpassword_section">
-      <button ion-button icon-left clear small color=extralight (tap)="gotoforgotpassword()">
+      <button ion-button icon-left clear small color="mainbutton" (click)="gotoforgotpassword()">
         <ion-icon name="md-key"></ion-icon>
         Lost password?
       </button>
-      <button ion-button icon-left clear small color=extralight (tap)="gotosignup()">
+      <button ion-button icon-left clear small color="mainbutton" (click)="gotosignup()">
         <ion-icon name="md-person-add"></ion-icon>
         New member
       </button>

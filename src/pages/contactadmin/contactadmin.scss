@@ -1,3 +1,54 @@
 page-contactadmin {
 
+  .myitem{
+    background-color: transparent;
+    margin-top: map-get($map: $margin, $key:small);
+
+    .mybutton{
+      width: 70vw;
+      height: 50px;
+      font-weight: bold;
+      div{
+        font-size: map-get($map: $custom_font, $key: font_13);
+      }
+    }
+  }
+
+  ion-input{
+    padding-left: 10px;
+    background-color: white;
+    margin-top: map-get($map: $margin, $key: ten);
+    border-width: 2px;
+    border-color: map-get($map: $colors, $key:button_primary);
+    border-radius: 5px;
+    border-style: groove;
+  }
+
+  .myitem:first-child{
+    margin-top: map-get($map: $margin, $key:thirty);
+  }
+
+  .myitem:nth-child(3)
+  {
+    ion-textarea{
+      height: 20vh;
+      padding-left: 10px;
+      background-color: white;
+      margin-top: map-get($map: $margin, $key: ten);
+      border-width: 2px;
+      border-color: map-get($map: $colors, $key:button_primary);
+      border-radius: 5px;
+      border-style: groove;
+      word-wrap: break-word;
+      white-space: normal;
+      .text-input{
+        height: 100%;
+      }
+    }
+
+
+  }
+
+
+
 }

@@ -1,4 +1,6 @@
 forum-item {
+    border-radius : map-get($map: $border_radius, $key: radius_10);
+    overflow: hidden;
     .forum_image {
         width: 100%;
         height: 200px;

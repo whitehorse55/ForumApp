@@ -1,6 +1,7 @@
 <ion-content class="content" padding>
+  <div class="layer"></div>
 
-  <ion-item (click)="onclickForum()" no-lines text-center>
+  <ion-item class="firstitem" (click)="onclickForum()" no-lines text-center>
       <button ion-button  large>Forum</button>
   </ion-item>
 
@@ -18,5 +19,9 @@
   <ion-item (click)="onclickContact()" no-lines text-center>
       <button  ion-button large >Contact Admin</button>
   </ion-item>
+
+  <ion-item (click)="onclickLogout()" no-lines text-center>
+    <button  ion-button large >Log out</button>
+</ion-item>
 
 </ion-content>

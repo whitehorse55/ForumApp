@@ -10,8 +10,9 @@
 
 
 <ion-content>
+    <div class="layer"></div>
   <!-- <ng-template *ngIf="categoryArray.length > 0"> -->
-      <forum-item  [index]="i"  [info]="item"  (clickItem)="onclickitem($event)" *ngFor="let item of categoryArray; let i = index"></forum-item>
+    <forum-item  [index]="i"  [info]="item"  (clickItem)="onclickitem($event)" *ngFor="let item of categoryArray; let i = index"></forum-item>
   <!-- </ng-template> -->
 
 

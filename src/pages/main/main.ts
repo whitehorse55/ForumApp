@@ -56,4 +56,10 @@ export class MainPage {
   onclickContact() {
     this.navCtrl.push("ContactadminPage");
   }
+
+  onclickLogout()
+  {
+    this.localprovider.clearLocalstorage();
+    this.navCtrl.setRoot('SigninPage')
+  }
 }

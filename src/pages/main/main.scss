@@ -1,6 +1,6 @@
 page-main {
     .content {
-        background: map-get($map: $custom_colors, $key:maingradient);
+        // background: map-get($map: $custom_colors, $key:maingradient);
         ion-item {
             background-color: transparent;
             button {
@@ -14,7 +14,7 @@ page-main {
                 //  color : map-get($map: $colors, $key:primary)
             }
         }
-        ion-item:first-child {
+        .firstitem {
             margin-top: 30vh;
         }
     }

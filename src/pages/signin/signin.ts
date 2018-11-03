@@ -65,5 +65,8 @@ export class SigninPage {
 
   gotoforgotpassword() {}
 
-  gotosignup() {}
+  gotosignup() {
+    console.log("this is cliekd");
+    this.navCtrl.push('SignupPage')
+  }
 }

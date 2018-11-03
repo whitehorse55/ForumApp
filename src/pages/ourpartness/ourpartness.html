@@ -2,5 +2,6 @@
   <custombar [title]="'OurPartness'" (onclickback)="onclickbackbutton($event)"></custombar>
 </ion-header>
 <ion-content padding>
+    <div class="layer"></div>
   <banneritem [info]="item" (clickurl)="onclickurl($event)" *ngFor="let item of banner_array" ></banneritem>
 </ion-content>

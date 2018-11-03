@@ -21,6 +21,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { LocalstorageProvider } from '../providers/localstorage/localstorage';
 import { LoadingProvider } from '../providers/loading/loading';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { EmailComposer } from '@ionic-native/email-composer';
 @NgModule({
   declarations: [
     MyApp,
@@ -53,7 +54,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     FileTransferObject,
     LocalstorageProvider,
     LoadingProvider,
-    InAppBrowser
+    InAppBrowser,
+    EmailComposer
   ]
 })
 export class AppModule {}
