@@ -1,5 +1,6 @@
 export class Constant{
-  public static SERVER_URL = "http://192.168.1.13/ci_admin/Api/"
+  // public static SERVER_URL = "http://192.168.1.13/ci_admin/Api/"
+  public static SERVER_URL = "http://countrysport-co-uk.stackstaging.com/countrysport/Api/"
   public static USER_LOGIN = Constant.SERVER_URL + 'userLogin'
   public static USER_SIGNUP = Constant.SERVER_URL + 'userSignup'
   public static GET_CATEGORY = Constant.SERVER_URL + 'getCategory'
@@ -19,8 +20,10 @@ export class Constant{
   public static GETUSERINFO = Constant.SERVER_URL + 'getUserInfo'
   public static GETBANNERINFO = Constant.SERVER_URL + 'getPartners'
 
-  public static PHOTO_URL = 'http://192.168.1.13/ci_admin/upload/forum/'
-  public static BANNER_URL = 'http://192.168.1.13/ci_admin/upload/banner/'
+  // public static PHOTO_URL = 'http://192.168.1.13/ci_admin/upload/forum/'
+  // public static BANNER_URL = 'http://192.168.1.13/ci_admin/upload/banner/'
+  public static PHOTO_URL = 'http://countrysport-co-uk.stackstaging.com/countrysport/upload/forum/'
+  public static BANNER_URL = 'http://countrysport-co-uk.stackstaging.com/countrysport/upload/banner/'
 
   public static RESULT_SUCCESS = 'Success'
   public static RESULT_FAIL = 'Fail'

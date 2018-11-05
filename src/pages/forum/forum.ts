@@ -1,3 +1,4 @@
+import { LoadingProvider } from './../../providers/loading/loading';
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { ApiProvider } from "../../providers/api/api";
@@ -19,7 +20,8 @@ export class ForumPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public apiprovider: ApiProvider
+    public apiprovider: ApiProvider,
+    public loadingprovider : LoadingProvider
   ) {}
 
   // generateArray() {
@@ -37,12 +39,20 @@ export class ForumPage {
 
   ionViewDidLoad() {
     // this.generateArray()
+
+  }
+
+  ionViewWillEnter(){
+    this.categoryList = []
     console.log("ionViewDidLoad ForumPage");
-
+    this.loadingprovider.showLoadingView()
     this.apiprovider.getCategory().then(res=>{
-        this.categoryList = res
-    }).catch(er=>{
 
+        this.categoryList = res
+        this.loadingprovider.removeLoadingView()
+        console.log("this is category info", this.categoryList);
+    }).catch(er=>{
+      this.loadingprovider.removeLoadingView()
     })
   }
 

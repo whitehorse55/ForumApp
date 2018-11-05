@@ -2,29 +2,33 @@
   <div class="layer"></div>
   <div class="center_screen">
     <!-- <img class="logo" src="assets/img/logo.svg" alt="Logo"> -->
+
     <div class="input_area">
       <ion-icon name="md-person"></ion-icon>
       <input type="text" name="useremail" [(ngModel)]="credential.useremail" placeholder="E-mail">
     </div>
+
     <div class="input_area">
       <ion-icon name="md-lock"></ion-icon>
       <input type="password" name="userpassword" [(ngModel)]="credential.userpassword" placeholder="Password">
     </div>
 
-    <button [style.margin-top.px]="20" ion-button full color="mainbutton" round (click)="gotomain()">Log in</button>
+    <button [style.margin-top.px]="20" ion-button full color="mainbutton" round (click)="gotomain()">Log In</button>
+    <button [style.margin-top.px]="20" ion-button full color="mainbutton" round (click)="gotosignup()">Sign Up</button>
 
-    <div class="forgotpassword_section">
-      <button ion-button icon-left clear small color="mainbutton" (click)="gotoforgotpassword()">
+    <!-- <div class="forgotpassword_section"> -->
+    <!-- <button ion-button icon-left clear small color="mainbutton" (click)="gotoforgotpassword()">
         <ion-icon name="md-key"></ion-icon>
         Lost password?
-      </button>
-      <button ion-button icon-left clear small color="mainbutton" (click)="gotosignup()">
+      </button> -->
+    <!-- <button ion-button icon-left clear small color="mainbutton" (click)="gotosignup()">
         <ion-icon name="md-person-add"></ion-icon>
         New member
-      </button>
-    </div>
+      </button> -->
+    <!-- </div> -->
+
   </div>
-  <ion-footer>
+  <!-- <ion-footer>
     <button ion-button icon-left color="facebook">
       <ion-icon name="logo-facebook"></ion-icon>
       facebook
@@ -34,5 +38,5 @@
       <ion-icon name="logo-googleplus"></ion-icon>
       G-mail
     </button>
-  </ion-footer>
+  </ion-footer> -->
 </ion-content>

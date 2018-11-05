@@ -1,4 +1,4 @@
-<ion-card>
+<ion-card (click)="onclickanswerbutton(index)">
   <ion-item no-padding>
     <ion-avatar item-start>
       <img src="assets/imgs/man2.jpeg"/>
@@ -22,9 +22,10 @@
 
   <ion-row>
     <ion-col col-6 center text-center>
-      <button (click)="onclickanswerbutton(index)"   ion-button icon-left clear small>
+      <button ion-button icon-left clear small>
           <ion-icon ios="ios-text" md="md-text"></ion-icon>
-        <ion-label>{{answer_num}} answers</ion-label>
+        <ion-label *ngIf="answer_num > 0" >{{answer_num}} answers</ion-label>
+        <ion-label *ngIf="answer_num == 0" >add new comment</ion-label>
       </button>
     </ion-col>
     <ion-col col-6 center text-center>

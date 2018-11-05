@@ -7,6 +7,7 @@ import { AuthProvider } from "./../../providers/auth/auth";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams, ActionSheetController } from "ionic-angular";
 import { Constant } from '../../Constant/constant';
+import { ToastserviceProvider } from '../../providers/toastservice/toastservice';
 
 /**
  * Generated class for the SignupPage page.
@@ -32,7 +33,8 @@ export class SignupPage {
     public actionSheetCtrl : ActionSheetController,
     public camera : Camera,
     public transfer : FileTransfer,
-    public loadingService : LoadingProvider
+    public loadingService : LoadingProvider,
+    public toastservice : ToastserviceProvider
   ) {
     this.base64Image = "";
     this.credential = {
@@ -53,17 +55,21 @@ export class SignupPage {
 
       this.loadingService.showLoadingView()
       this.authprovider.signup(this.credential, this.base64Image).then(res=>{
-        if(this.base64Image != '')
+        console.log("thisfsdfa", this.base64Image);
+        if(this.base64Image == '')
         {
-            this.doSignup('')
+            const temp = ""
+            this.doSignup(temp)
         }else{
           this.uploadPhoto(this.base64Image).then(res=>{
+            console.log("this is res", res);
             this.doSignup(res)
           }).catch(er=>{
             this.loadingService.removeLoadingView()
           })
         }
       }).catch(er=>{
+          this.toastservice.presentAlert("Sorry!", er)
           this.loadingService.removeLoadingView()
           console.log("this is eror", er)
       })
@@ -72,10 +78,12 @@ export class SignupPage {
   doSignup(res)
   {
     this.apiprovider.userSignup(this.credential, res).then(res=>{
-        this.navCtrl.pop()
+        this.toastservice.create("SignUp Success", false, 2000);
         this.loadingService.removeLoadingView()
+        this.navCtrl.pop()
     }).catch(er=>{
       this.loadingService.removeLoadingView()
+      this.toastservice.create(er, false, 2000);
       console.log("this is eror===>", er)
     })
   }
@@ -123,7 +131,9 @@ export class SignupPage {
       };
       this.camera.getPicture(options).then(
         imageData => {
+
           this.base64Image = "data:image/jpeg;base64," + imageData;
+          // this.base64Image = imageData;
         },
         err => {
           console.log(err);
@@ -137,16 +147,18 @@ export class SignupPage {
     return new Promise((resolve, reject)=>{
       const fileTransfer: FileTransferObject = this.transfer.create();
 
+      let filename = Customutils.createFileName()
       let options1: FileUploadOptions = {
-         fileKey: 'photo_url',
-         fileName: Customutils.createFileName(),
-         headers: {}
-      }
-
-
+        fileKey: 'file',
+        fileName: filename,
+        chunkedMode : false,
+        mimeType : "multipart/form-data",
+        params : {'fileName' : filename},
+        headers: {}
+     }
       fileTransfer.upload(info, Constant.UPLOAD_IMAGE, options1).then(data=>{
-          console.log("this is result upload", data.response)
-          resolve(data.response['profile'])
+          console.log("this is result upload", data)
+          resolve(filename)
       }).catch(err=>{
           reject(err)
           console.log("this is upload error", err)

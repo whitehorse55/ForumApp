@@ -38,12 +38,13 @@ export class SigninPage {
   }
 
   ionViewDidLoad() {
-    console.log("ionViewDidLoad SigninPage");
+
   }
 
   gotomain() {
     this.loadingprovider.showLoadingView()
     this.authprovider.login(this.credential).then(res=>{
+      console.log("ionViewDidLoad afsdafsdf");
       this.apiservice.userLogin(this.credential).then(re=>{
 
         this.localprovider.saveLoginStatus(true)

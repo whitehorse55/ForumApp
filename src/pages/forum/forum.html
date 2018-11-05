@@ -11,15 +11,29 @@
 
 <ion-content class="content">
   <div class="layer"></div>
+
   <ion-list clear>
     <ion-list-header no-lines text-center>
-      <p>Welcome to visit forum</p>
-      <p>Choose a category</p>
+      <p>Welcome to the Country Sport Forum</p>
+      <p>Please choose a category</p>
     </ion-list-header>
 
-    <ion-item no-lines text-center (click)="onclickitems(i)"  *ngFor="let item of categoryList ; let i = index;">
-      <button ion-button large>{{item.ca_name}}</button>
+    <ng-container *ngFor="let item of categoryList ; let i = index;">
+      <ion-item *ngIf="item.type == 0" no-lines text-center (click)="onclickitems(i)">
+        <button ion-button large>{{item.ca_name}}</button>
+      </ion-item>
+    </ng-container>
+
+    <ion-item no-lines>
+       <ion-label color="extralight"  style="font-weight : bold; font-size : 14pt;" text-center>For SALE</ion-label>
     </ion-item>
+
+    <ng-container *ngFor="let item of categoryList ; let i = index;">
+
+        <ion-item *ngIf="item.type == 1" no-lines text-center (click)="onclickitems(i)">
+            <button ion-button large>{{item.ca_name}}</button>
+        </ion-item>
+      </ng-container>
 
   </ion-list>
 </ion-content>

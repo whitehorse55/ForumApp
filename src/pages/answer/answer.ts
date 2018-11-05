@@ -76,7 +76,8 @@ export class AnswerPage {
     this.apiservice
       .addLike(info["an_id"])
       .then(res => {
-        this.toastservice.create(res["msg"], false, 2000);
+        // this.toastservice.create(res["msg"], false, 2000);
+        this.getAnswersList();
       })
       .then(er => {
         this.toastservice.create(er, false, 2000);
@@ -88,8 +89,8 @@ export class AnswerPage {
     this.apiservice
       .addUnLike(info["an_id"])
       .then(res => {
-        this.toastservice.create(res["msg"], false, 2000);
-
+        // this.toastservice.create(res["msg"], false, 2000);
+        this.getAnswersList();
       })
       .then(er => {
         this.toastservice.create(er, false, 2000);

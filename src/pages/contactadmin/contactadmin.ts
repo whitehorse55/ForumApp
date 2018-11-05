@@ -19,7 +19,7 @@ export class ContactadminPage {
 
   admin_address : any
   title : any
-  content : any
+  mycontent : any
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public emailcomposer : EmailComposer) {
@@ -29,8 +29,9 @@ export class ContactadminPage {
   ionViewDidLoad() {
     this.admin_address = ""
     this.title = ""
-    this.content = ""
+    this.mycontent = ""
     console.log('ionViewDidLoad ContactadminPage');
+    this.sendmessage()
   }
 
   onclickbackbutton(event)
@@ -47,7 +48,7 @@ export class ContactadminPage {
       bcc: [],
       attachment: [],
       subject: "Report Content",
-      body:this.admin_address
+      body:this.mycontent
     };
 
     this.emailcomposer.addAlias("gmail", "com.google.android.gm");
@@ -68,6 +69,7 @@ export class ContactadminPage {
         console.log("====================================");
         console.log(err);
         console.log("====================================");
+        this.navCtrl.pop()
       });
   }
 }

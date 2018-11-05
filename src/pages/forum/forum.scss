@@ -22,7 +22,7 @@ page-forum {
               margin-top: map-get($map: $margin, $key:medium);
               color: map-get($map: $colors, $key:lightbg);
               font-weight: bold;
-              font-size: map-get($map: $custom_font, $key: font_13);
+              font-size: map-get($map: $custom_font, $key: font_11);
             }
         }
     }

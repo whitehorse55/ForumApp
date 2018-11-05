@@ -20,7 +20,6 @@ export class AuthProvider {
         credentials.name === '' ||
         credentials.email === '' ||
         credentials.location === '' ||
-        credentials.birth === '' ||
         credentials.password === '' ||
         credentials.confirmpassword == ''
       ) {

@@ -76,6 +76,8 @@ export class ApiProvider {
         credentail.useremail +
         "&password=" +
         credentail.userpassword;
+
+
       this.http
         .post(Constant.USER_LOGIN, postdata, { headers: headers })
         .subscribe(
@@ -115,13 +117,12 @@ export class ApiProvider {
         credentail.location +
         "&photo=" +
         photo;
-      console.log("this is response", postdata);
+
       this.http
         .post(Constant.USER_SIGNUP, postdata, { headers: headers })
         .subscribe(
           response => {
             let data = response.json();
-            console.log("this is response", data);
             if (data["status"] == Constant.RESULT_FAIL) {
               reject(data);
             } else {

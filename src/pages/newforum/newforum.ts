@@ -1,3 +1,4 @@
+import { LoadingProvider } from './../../providers/loading/loading';
 import { ToastserviceProvider } from './../../providers/toastservice/toastservice';
 import { FileTransferObject, FileTransfer, FileUploadOptions } from '@ionic-native/file-transfer';
 import { Component } from "@angular/core";
@@ -37,20 +38,22 @@ export class NewforumPage {
     public viewCtrl: ViewController,
     public apiprovider: ApiProvider,
     public transfer : FileTransfer,
-    public toastservice : ToastserviceProvider
+    public toastservice : ToastserviceProvider,
+    public loadingprovider: LoadingProvider
   ) {
     this.categoryList = []
     this.photos = []
   }
 
   ionViewDidLoad() {
-    console.log("ionViewDidLoad NewforumPage");
+
     this.title = ""
-    this.category = ""
+    this.category = this.navParams.get('ca_id')
     this.question = ""
     this.categoryList = []
     this.photos = []
     this.getCategoryList()
+    console.log("ionViewDidLoad NewforumPage", this.category);
   }
 
   onclickbackbutton() {
@@ -98,9 +101,11 @@ export class NewforumPage {
 
       if(this.photos.length > 0)
       {
+        this.loadingprovider.showLoadingView()
         this.uploadPhoto(this.photos[0]).then(res=>{
             this.addForum(res)
         }).catch(er=>{
+            this.loadingprovider.removeLoadingView()
             this.toastservice.create(er, true, 3000)
         })
       }else{
@@ -114,16 +119,20 @@ export class NewforumPage {
     return new Promise((resolve, reject)=>{
       const fileTransfer: FileTransferObject = this.transfer.create();
 
+      let filename = Customutils.createFileName()
       let options1: FileUploadOptions = {
-         fileKey: 'photo_url',
-         fileName: Customutils.createFileName(),
+         fileKey: 'file',
+         fileName: filename,
+         chunkedMode : false,
+         mimeType : "multipart/form-data",
+         params : {'fileName' : filename},
          headers: {}
       }
 
 
       fileTransfer.upload(info, Constant.UPLOAD_IMAGE, options1).then(data=>{
           console.log("this is result upload", data.response)
-          resolve(data.response['profile'])
+          resolve(filename)
       }).catch(err=>{
           reject(err)
           console.log("this is upload error", err)
@@ -138,9 +147,10 @@ export class NewforumPage {
       let credential = {"title": this.title, content : this.question, category : this.category, photo : photo}
 
       this.apiprovider.addForum(credential).then(res=>{
+          this.loadingprovider.removeLoadingView()
           this.viewCtrl.dismiss();
       }).catch(er=>{
-
+          this.loadingprovider.removeLoadingView()
       })
   }
 

@@ -28,17 +28,16 @@
     <ion-textarea [(ngModel)]="question"></ion-textarea>
   </ion-item>
 
-  <ion-item>
+  <!-- <ion-item>
     <ion-label>Category : </ion-label>
     <ion-select class="myCustomSelect" [(ngModel)]="category" name="category">
       <ion-option *ngFor="let item of categoryList" value="{{item.ca_id}}">{{item.ca_name}}</ion-option>
     </ion-select>
-  </ion-item>
-
+  </ion-item> -->
 
 
   <ion-item no-lines>
-    <customcamera [title]="'take a photo'" [type]="'photo'" (onclickButton)="getPhoto($event)"></customcamera>
+    <customcamera [title]="'Add an image'" [type]="'photo'" (onclickButton)="getPhoto($event)"></customcamera>
   </ion-item>
 
 

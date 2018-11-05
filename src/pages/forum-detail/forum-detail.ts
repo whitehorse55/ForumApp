@@ -1,3 +1,4 @@
+import { LoadingProvider } from './../../providers/loading/loading';
 import { ApiProvider } from './../../providers/api/api';
 import { Component } from "@angular/core";
 import {
@@ -31,7 +32,8 @@ export class ForumDetailPage {
     public navParams: NavParams,
     public modalCtrl: ModalController,
     public apiservice : ApiProvider,
-    public toastservice : ToastserviceProvider
+    public toastservice : ToastserviceProvider,
+    public loadingprovider : LoadingProvider
   ) {
 
   }
@@ -48,16 +50,20 @@ export class ForumDetailPage {
   }
   getCategoryInfo()
   {
+    this.loadingprovider.showLoadingView()
     this.apiservice.getForumByCategory(this.categoryinfo['ca_id']).then(res=>{
       console.log("resifo", res);
       if(res['status'] == Constant.RESULT_SUCCESS)
       {
         this.categoryArray = res['data'];
+        this.loadingprovider.removeLoadingView()
         console.log("resifo", this.categoryArray);
       }else{
-        this.toastservice.create(res['msg'], false, 2000)
+        this.loadingprovider.removeLoadingView()
+        this.toastservice.create("Click the green button to start new conversation", false, 3000)
       }
     }).catch(er=>{
+      this.loadingprovider.removeLoadingView()
       this.toastservice.create(er, false, 2000)
     })
   }
@@ -75,8 +81,11 @@ export class ForumDetailPage {
 
   onclickfabbutton() {
     let profileModal = this.modalCtrl.create("NewforumPage", {
-      userId: 8675309
+      ca_id: this.categoryinfo['ca_id']
     });
     profileModal.present();
+    profileModal.onDidDismiss(res=>{
+      this.getCategoryInfo()
+    })
   }
 }

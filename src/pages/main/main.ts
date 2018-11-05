@@ -1,3 +1,4 @@
+import { EmailComposer } from '@ionic-native/email-composer';
 import { ApiProvider } from "./../../providers/api/api";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
@@ -20,7 +21,8 @@ export class MainPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public apiservice: ApiProvider,
-    public localprovider : LocalstorageProvider
+    public localprovider : LocalstorageProvider,
+    public emailcomposer : EmailComposer
   ) {}
 
   ionViewDidLoad() {
@@ -54,12 +56,46 @@ export class MainPage {
   }
 
   onclickContact() {
-    this.navCtrl.push("ContactadminPage");
+    // this.navCtrl.push("ContactadminPage");
+    this.sendmessage()
   }
 
   onclickLogout()
   {
     this.localprovider.clearLocalstorage();
     this.navCtrl.setRoot('SigninPage')
+  }
+
+  sendmessage()
+  {
+    let email = {
+      to: [],
+      cc: [],
+      bcc: [],
+      attachment: [],
+      subject: "Report Content",
+      body:""
+    };
+
+    this.emailcomposer.addAlias("gmail", "com.google.android.gm");
+    this.emailcomposer.addAlias("outlook", "com.microsoft.android.outlook");
+    this.emailcomposer.open(email);
+
+    this.emailcomposer
+      .isAvailable()
+      .then((available: boolean) => {
+        console.log("this is available", available);
+        if (available) {
+          //Now we know we can send
+          // Send a text message using default options
+          this.emailcomposer.open(email);
+        }
+      })
+      .catch(err => {
+        console.log("====================================");
+        console.log(err);
+        console.log("====================================");
+        this.navCtrl.pop()
+      });
   }
 }

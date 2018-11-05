@@ -35,11 +35,17 @@ export class LoadingProvider {
   removeLoadingView()
   {
     return new Promise((resolve, reject)=>{
-      this.loading.dismiss().then(res=>{
-        resolve(true)
-      }).catch(er=>{
-        reject(er)
-      })
+      if(this.loading)
+      {
+        this.loading.dismiss().then(res=>{
+          resolve(true)
+        }).catch(er=>{
+          reject(er)
+        })
+      }else{
+        reject(false)
+      }
+
 
     })
   }
