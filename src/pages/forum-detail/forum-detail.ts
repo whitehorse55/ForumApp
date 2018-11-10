@@ -55,7 +55,8 @@ export class ForumDetailPage {
       console.log("resifo", res);
       if(res['status'] == Constant.RESULT_SUCCESS)
       {
-        this.categoryArray = res['data'];
+        let data = res['data']
+        this.categoryArray = data.reverse();
         this.loadingprovider.removeLoadingView()
         console.log("resifo", this.categoryArray);
       }else{

@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <custombar [title]="'Answers'" (onclickback)="onclickbackbutton($event)"></custombar>
+  <custombar [title]="" (onclickback)="onclickbackbutton($event)"></custombar>
 </ion-header>
 
 
@@ -34,7 +34,7 @@
 <ion-footer>
     <div class="reply_input">
         <div class="input_area">
-          <ion-textarea no-margin placeholder="add new answers" [(ngModel)]="message" id="messageInputBox"></ion-textarea>
+          <ion-textarea no-margin placeholder="COMMENT" [(ngModel)]="message" id="messageInputBox"></ion-textarea>
 
           <div class="right_arrow"></div>
         </div>

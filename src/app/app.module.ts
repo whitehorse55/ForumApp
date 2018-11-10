@@ -22,6 +22,7 @@ import { LocalstorageProvider } from '../providers/localstorage/localstorage';
 import { LoadingProvider } from '../providers/loading/loading';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { MessageProvider } from '../providers/message/message';
 @NgModule({
   declarations: [
     MyApp,
@@ -59,7 +60,8 @@ import { EmailComposer } from '@ionic-native/email-composer';
     LocalstorageProvider,
     LoadingProvider,
     InAppBrowser,
-    EmailComposer
+    EmailComposer,
+    MessageProvider
   ]
 })
 export class AppModule {}

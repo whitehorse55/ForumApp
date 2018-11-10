@@ -53,7 +53,8 @@ export class AnswerPage {
     this.apiservice
       .getAnswersById(this.myinfo["fo_id"])
       .then(res => {
-        this.answerArray = res["data"];
+        let data = res['data']
+        this.answerArray = data.reverse();
       })
       .catch(er => {});
   }
