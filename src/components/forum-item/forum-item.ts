@@ -2,6 +2,7 @@ import { ApiProvider } from './../../providers/api/api';
 import { EventEmitter } from '@angular/core';
 import { Component, Input, Output } from '@angular/core';
 import { Constant } from '../../Constant/constant';
+import { LocalstorageProvider } from '../../providers/localstorage/localstorage';
 
 /**
  * Generated class for the ForumItemComponent component.
@@ -25,15 +26,18 @@ export class ForumItemComponent {
   }
 
   @Output() clickItem : EventEmitter<any> = new EventEmitter();
+  @Output() clickDeleteButton : EventEmitter<any> = new EventEmitter();
 
   myinfo: any;
   myphoto = Constant.PHOTO_URL
 
   answer_num = 0;
 
-  constructor(public apiservice : ApiProvider) {
+  myid : any
+  constructor(public apiservice : ApiProvider, public localprovider: LocalstorageProvider) {
     this.myphoto = Constant.PHOTO_URL
-    console.log('Hello ForumItemComponent Component');
+    this.myid = this.localprovider.getUserId()
+    console.log('Hello ForumItemComponent Component', this.myid);
 
   }
 
@@ -49,6 +53,11 @@ export class ForumItemComponent {
   onclickanswerbutton(index)
   {
     this.clickItem.emit(index)
+  }
+
+  onclickdeletebutton()
+  {
+    this.clickDeleteButton.emit(this.index)
   }
 
 }

@@ -6,14 +6,13 @@
     <div class="post_user_details">
       <h2>{{myinfo.name}}</h2>
     </div>
-    <!-- <button ion-button clear icon-only color="bordercolor" (tap)="postpopover($event)"> -->
-    <!-- <button ion-button clear icon-only color="bordercolor" >
+    <button *ngIf="myid == myinfo.user_id"  ion-button clear icon-only color="secondary" (click)="onclickdeletebutton();$event.stopPropagation();">
       <ion-icon name='ios-arrow-down-outline'></ion-icon>
-    </button> -->
+    </button>
   </ion-item>
 
   <!-- <img (tap)="viewpost()" src="assets/img/post1.png"/> -->
-  <img  class="forum_image" *ngIf="myinfo.photo != ''"  src="{{myphoto}}{{myinfo.photo}}"/>
+  <img  class="forum_image" *ngIf="myinfo.photo != ''"  src="{{myphoto}}{{myinfo.photo}}" />
 
   <ion-card-content>
     <p>{{myinfo.title}}</p>

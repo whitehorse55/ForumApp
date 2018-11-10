@@ -5,14 +5,14 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <custombar [title]="categoryinfo.ca_name" (onclickback)="onclickbackbutton($event)"></custombar>
+  <custombar [title]="title" (onclickback)="onclickbackbutton($event)" ></custombar>
 </ion-header>
 
 
 <ion-content>
     <div class="layer"></div>
   <!-- <ng-template *ngIf="categoryArray.length > 0"> -->
-    <forum-item  [index]="i"  [info]="item"  (clickItem)="onclickitem($event)" *ngFor="let item of categoryArray; let i = index"></forum-item>
+    <forum-item  [index]="i"  [info]="item"  (clickDeleteButton)="onclickdeletebutton($event)" (clickItem)="onclickitem($event)" *ngFor="let item of categoryArray; let i = index"></forum-item>
   <!-- </ng-template> -->
 
 

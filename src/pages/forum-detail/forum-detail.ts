@@ -5,7 +5,8 @@ import {
   IonicPage,
   NavController,
   NavParams,
-  ModalController
+  ModalController,
+  PopoverController
 } from "ionic-angular";
 import { ToastserviceProvider } from '../../providers/toastservice/toastservice';
 import { Constant } from '../../Constant/constant';
@@ -26,6 +27,7 @@ export class ForumDetailPage {
 
   categoryinfo  = "1"
   categoryArray = []
+  title = ""
 
   constructor(
     public navCtrl: NavController,
@@ -33,14 +35,17 @@ export class ForumDetailPage {
     public modalCtrl: ModalController,
     public apiservice : ApiProvider,
     public toastservice : ToastserviceProvider,
-    public loadingprovider : LoadingProvider
+    public loadingprovider : LoadingProvider,
+    public popCtrl : PopoverController
   ) {
 
   }
 
   ionViewDidLoad() {
 
+    this.title = ""
     this.categoryinfo = this.navParams.get('info');
+    this.title = this.categoryinfo['ca_name']
     this.categoryArray = []
     console.log("ionViewDidLoad", this.categoryinfo);
   }
@@ -78,6 +83,26 @@ export class ForumDetailPage {
     let item_info = this.categoryArray[index]
     console.log("this is t", item_info)
     this.navCtrl.push('AnswerPage',{info : item_info});
+  }
+
+  onclickdeletebutton(index)
+  {
+    let item_info = this.categoryArray[index]
+    let popover = this.popCtrl.create('PopoverPage')
+    popover.present();
+
+    popover.onDidDismiss(res=>{
+      console.log("this is dismiss");
+      if(res['type'] == 'delete')
+      {
+          this.apiservice.deleteMyForum(item_info['fo_id']).then(res=>{
+            this.categoryArray.splice(index, 1);
+          }).catch(er=>{
+
+          })
+      }
+    })
+
   }
 
   onclickfabbutton() {

@@ -1,0 +1,10 @@
+page-popover {
+  .item {
+    font-weight: 400;
+    color: map_get($colors, dark);
+    font-size: map_get($font, bitsmall);
+    ion-icon {
+      font-size: map_get($font, big);
+    }
+  }
+}

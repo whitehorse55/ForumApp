@@ -328,6 +328,29 @@ export class ApiProvider {
     });
   }
 
+  public deleteMyForum(fo_id)
+  {
+    return new Promise((resolve, reject)=>{
+      let userid = this.localprovider.getUserId()
+      var headers = new Headers();
+      headers.append(
+        "Content-Type",
+        "application/x-www-form-urlencoded; charset=UTF-8"
+      );
+
+      let postdata = "fo_id=" + fo_id + "&userid=" + userid;
+
+      this.http.post(Constant.DELETE_FORUM, postdata, { headers: headers }).subscribe(
+        result => {
+          resolve(result.json());
+        },
+        err => {
+          reject(err);
+        }
+      );
+    })
+  }
+
   public getBannerInfo()
   {
     return new Promise((resolve, reject)=>{

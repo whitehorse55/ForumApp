@@ -7,12 +7,15 @@ export class Constant{
 
   public static UPLOAD_IMAGE = Constant.SERVER_URL + 'uploadImage'
   public static ADD_FORUM = Constant.SERVER_URL + 'addForum'
+  public static DELETE_FORUM = Constant.SERVER_URL + 'deleteForum'
   public static GET_FORUM = Constant.SERVER_URL + 'getForum'
   public static GET_ANSWERS = Constant.SERVER_URL + 'getAnswers'
   public static ADD_ANSWERS = Constant.SERVER_URL + 'addAnswers'
 
   public static LIKE = Constant.SERVER_URL + 'like'
   public static UNLIKE = Constant.SERVER_URL + 'unlike'
+
+
 
   public static LIKE_NUMBER = Constant.SERVER_URL + 'getLikeOfAnswer'
   public static UNLIKE_NUMBER = Constant.SERVER_URL + 'getUnLikeOfAnswer'
