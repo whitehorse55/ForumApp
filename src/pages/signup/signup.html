@@ -61,6 +61,12 @@
       <ion-icon name="md-lock"></ion-icon>
       <input type="password"  [(ngModel)]="credential.confirmpassword"  placeholder="Confirm Password">
     </div>
+
+    <ion-item no-lines style="background-color: transparent;">
+      <ion-checkbox  no-padding color="secondary"  [(ngModel)]="credential.isChecked" [checked]="credential.isChecked"></ion-checkbox>
+      <ion-label (click)="onclicktermbutton();$event.stopPropagation();" style="font-size : 11pt;word-wrap: break-word;white-space: nowrap;" no-padding  color="light">Countrysport Services Agreement </ion-label>
+    </ion-item>
+
     <button ion-button margin-top full color="mainbutton" round (click)="onclickSignup()" >Sign up</button>
   </div>
 

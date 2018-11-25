@@ -5,14 +5,16 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <custombar [title]="title" (onclickback)="onclickbackbutton($event)" ></custombar>
+  <custombar [title]="title" [type]="'category'" (onclickback)="onclickbackbutton($event)" ></custombar>
 </ion-header>
 
 
 <ion-content>
-    <div class="layer"></div>
+
+    <customsearchbar color='primary' [passarray]="categorySearchArray"   (onChangeSearchValue)="onchangeSearch($event)" ></customsearchbar>
+    <!-- <div class="layer"></div> -->
   <!-- <ng-template *ngIf="categoryArray.length > 0"> -->
-    <forum-item  [index]="i"  [info]="item"  (clickDeleteButton)="onclickdeletebutton($event)" (clickItem)="onclickitem($event)" *ngFor="let item of categoryArray; let i = index"></forum-item>
+    <forum-item  [index]="i"  [info]="item"  (clickForumImage)="presentImage($event)" (clickUserPhoto)="onclickuserphoto($event)" (clickDeleteButton)="onclickdeletebutton($event)" (clickItem)="onclickitem($event)" *ngFor="let item of categorySearchArray; let i = index"></forum-item>
   <!-- </ng-template> -->
 
 

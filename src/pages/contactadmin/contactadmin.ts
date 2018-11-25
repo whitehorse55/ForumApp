@@ -43,7 +43,7 @@ export class ContactadminPage {
   sendmessage()
   {
     let email = {
-      to: [],
+      to: ["Info@countrysport.org"],
       cc: [],
       bcc: [],
       attachment: [],

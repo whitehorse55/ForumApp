@@ -77,12 +77,14 @@ export class CustomcameraComponent {
 
   private takePhoto(sourceType) {
     const options: CameraOptions = {
-      quality: 100, // picture quality
-      targetHeight: 300,
-      targetWidth: 200,
+      quality: 70, // picture quality
+      // targetHeight: 700,
+      // targetWidth: 500,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation : true,
+      allowEdit : true,
       sourceType: sourceType
     };
     this.camera.getPicture(options).then(

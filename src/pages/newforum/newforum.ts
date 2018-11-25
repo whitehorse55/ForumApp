@@ -11,6 +11,7 @@ import {
 import { ApiProvider } from "../../providers/api/api";
 import { Customutils } from '../../Constant/customustils';
 import { Constant } from '../../Constant/constant';
+import { LocalstorageProvider } from '../../providers/localstorage/localstorage';
 
 /**
  * Generated class for the NewforumPage page.
@@ -25,12 +26,15 @@ import { Constant } from '../../Constant/constant';
   templateUrl: "newforum.html"
 })
 export class NewforumPage {
-  categoryList: any;
+  // categoryList: any;
   photos : any;
 
   category : any;
   title : any;
   question : any;
+
+  type : any
+  messsageinfo : any
 
   constructor(
     public navCtrl: NavController,
@@ -39,21 +43,31 @@ export class NewforumPage {
     public apiprovider: ApiProvider,
     public transfer : FileTransfer,
     public toastservice : ToastserviceProvider,
-    public loadingprovider: LoadingProvider
+    public loadingprovider: LoadingProvider,
+    public localprovider : LocalstorageProvider
   ) {
-    this.categoryList = []
+    // this.categoryList = []
     this.photos = []
   }
 
   ionViewDidLoad() {
 
     this.title = ""
-    this.category = this.navParams.get('ca_id')
     this.question = ""
-    this.categoryList = []
+    // this.categoryList = []
     this.photos = []
-    this.getCategoryList()
-    console.log("ionViewDidLoad NewforumPage", this.category);
+    this.type = this.navParams.get('type')
+    if(this.type == 'forum')
+    {
+      this.category = this.navParams.get('ca_id')
+    }else{
+      this.messsageinfo = this.navParams.get('info')
+      console.log("ionViewDidLoad NewforumPage", this.messsageinfo);
+    }
+
+
+    // this.getCategoryList()
+
   }
 
   onclickbackbutton() {
@@ -64,7 +78,7 @@ export class NewforumPage {
     this.apiprovider
       .getCategory()
       .then(res => {
-        this.categoryList = res;
+        // this.categoryList = res;
       })
       .catch(er => {});
   }
@@ -109,6 +123,7 @@ export class NewforumPage {
             this.toastservice.create(er, true, 3000)
         })
       }else{
+        this.loadingprovider.showLoadingView()
         this.addForum("")
       }
   }
@@ -144,14 +159,27 @@ export class NewforumPage {
 
   addForum(photo)
   {
-      let credential = {"title": this.title, content : this.question, category : this.category, photo : photo}
 
+    if(this.type == 'forum')
+    {
+      let credential = {"title": this.title, content : this.question, category : this.category, photo : photo}
       this.apiprovider.addForum(credential).then(res=>{
           this.loadingprovider.removeLoadingView()
           this.viewCtrl.dismiss();
       }).catch(er=>{
           this.loadingprovider.removeLoadingView()
       })
+
+    }else{
+      let myid = this.localprovider.getUserId()
+      this.apiprovider.sendMessasge(this.question, this.messsageinfo['from'],myid, photo).then(res=>{
+        this.loadingprovider.removeLoadingView()
+        this.viewCtrl.dismiss();
+      }).catch(er=>{
+        this.loadingprovider.removeLoadingView()
+      })
+    }
+
   }
 
 

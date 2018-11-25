@@ -21,13 +21,16 @@ export class AuthProvider {
         credentials.email === '' ||
         credentials.location === '' ||
         credentials.password === '' ||
-        credentials.confirmpassword == ''
-      ) {
+        credentials.confirmpassword == '') {
         reject('Please insert credentials!');
       } else {
         if (credentials.password != credentials.confirmpassword) {
           reject('Confirm Password is incorrect!');
-        } else {
+        }else if(credentials.isChecked == false)
+        {
+          reject('You must agree countrysport serveice agreement!');
+        }
+         else {
           resolve('auth success');
         }
       }
@@ -39,7 +42,7 @@ export class AuthProvider {
       if (credential.useremail === '' || credential.userpassword === '') {
         reject('Please insert credentials');
       } else {
-        resolve('auth success');
+          resolve('auth success');
       }
     });
   }

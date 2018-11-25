@@ -5,39 +5,43 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <custombar [title]="" (onclickback)="onclickbackbutton($event)"></custombar>
+  <custombar [title]="" [type]="'category'" (onclickback)="onclickbackbutton($event)"></custombar>
 </ion-header>
 
 
-<ion-content>
-  <div class="layer"></div>
+<ion-content class="mycontent" #content (click)="onclickContent()">
+  <!-- <div class="layer"></div> -->
   <ion-list style="padding : 0 !important;">
       <ion-list-header no-lines>
           <ion-item no-lines>
             <ion-avatar item-start>
-                <img  src="assets/imgs/man2.jpeg">
+              <img  *ngIf="myinfo.profile_photo != ''"  src="{{myphoto}}{{myinfo.profile_photo}}"/>
             </ion-avatar>
             <ion-label *ngIf="myinfo.name"  item-end>{{myinfo.name}}</ion-label>
           </ion-item>
-
           <ion-item>
-              <img *ngIf="myinfo.photo != ''"  src="{{myphoto}}{{myinfo.photo}}">
+              <img *ngIf="myinfo.photo != ''"   src="{{myphoto}}{{myinfo.photo}}" #myImage (click)="presentImage(myImage);$event.stopPropagation();">
               <p *ngIf="myinfo.title">{{myinfo.title}}</p>
               <p *ngIf="myinfo.content">{{myinfo.content}}</p>
           </ion-item>
         </ion-list-header>
-    <forum-favorite-item [info]="item" [index] = "i" (clickLike)="onclicklikebutton($event)" (clickUnLike)="onclickunlikebutton($event)" *ngFor="let item of answerArray; let i = index;" ></forum-favorite-item>
+    <forum-favorite-item [info]="item" [index] = "i" (clickDelete)="onclickdelete($event)" (clickPhoto)="onclickphoto($event)" (clickLike)="onclicklikebutton($event)" (clickUnLike)="onclickunlikebutton($event)" *ngFor="let item of answerArray; let i = index;" ></forum-favorite-item>
   </ion-list>
 
 
 </ion-content>
-<ion-footer>
+<ion-footer no-border [style.height.px]="keyboardHeight">
     <div class="reply_input">
         <div class="input_area">
-          <ion-textarea no-margin placeholder="COMMENT" [(ngModel)]="message" id="messageInputBox"></ion-textarea>
+          <textarea no-margin placeholder="COMMENT" [(ngModel)]="message" id="messageInputBox" (keyup.enter)="onclickSendButton()" (focus)="onFocus()">
 
+          </textarea>
+          <!-- <input type="text" no-margin placeholder="COMMENT" [(ngModel)]="message" id="messageInputBox" (keyup.enter)="onclickSendButton()" (focus)="onFocus()"> -->
           <div class="right_arrow"></div>
         </div>
+
+        <customcamera [title]="''" [type]="'comment'" (onclickButton)="onclickimagebutton($event)"></customcamera>
+
         <button ion-button (click)="onclickSendButton()">
           <ion-icon name="ios-send"></ion-icon>
         </button>

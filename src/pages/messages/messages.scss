@@ -1,0 +1,9 @@
+page-messages {
+  ion-item{
+    border-radius: map-get($map: $border_radius, $key:radius_5);
+
+    ion-label{
+      font-weight: bold;
+    }
+  }
+}

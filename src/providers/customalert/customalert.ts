@@ -68,4 +68,41 @@ export class CustomalertProvider {
     });
   }
 
+
+
+  showAlertWithMessage()
+  {
+    return new Promise((resolve, reject)=>{
+      let alert = this.alertCtrl.create({
+        title: 'Reset Password',
+        cssClass : "myalert",
+        inputs: [
+          {
+            name: 'content',
+            placeholder: 'email address'
+          }
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: data => {
+              console.log('Cancel clicked');
+              reject(false)
+            }
+          },
+          {
+            text: 'Send',
+            handler: data => {
+                resolve(data.content)
+            }
+          }
+        ]
+      });
+
+      alert.present();
+    })
+
+  }
+
 }

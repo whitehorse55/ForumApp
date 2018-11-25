@@ -1,3 +1,16 @@
 page-houserule {
+  .mycontent{
+    border-radius: map-get($map: $border_radius, $key: radius_5);
+    ion-item{
+      border-radius: map-get($map: $border_radius, $key: radius_5);
+      margin-top: 10vh;
+      word-wrap: break-word;
+      white-space: nowrap;
 
+      p{
+        font-size: 12pt;
+        color: black;
+      }
+    }
+  }
 }

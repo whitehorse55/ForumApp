@@ -8,6 +8,9 @@ import { ApiProvider } from './../../providers/api/api';
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { LocalstorageProvider } from '../../providers/localstorage/localstorage';
+import { ToastserviceProvider } from '../../providers/toastservice/toastservice';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Constant } from '../../Constant/constant';
 
 /**
  * Generated class for the SigninPage page.
@@ -32,9 +35,12 @@ export class SigninPage {
     public authprovider : AuthProvider,
     public alertprovider : CustomalertProvider,
     public loadingprovider : LoadingProvider,
-    public localprovider : LocalstorageProvider
+    public localprovider : LocalstorageProvider,
+    public toastprovider : ToastserviceProvider,
+    public inappbroswser : InAppBrowser
   ) {
     this.credential = {useremail : "", userpassword : ""};
+
   }
 
   ionViewDidLoad() {
@@ -42,6 +48,7 @@ export class SigninPage {
   }
 
   gotomain() {
+    console.log("this", this.credential.isChecked)
     this.loadingprovider.showLoadingView()
     this.authprovider.login(this.credential).then(res=>{
       console.log("ionViewDidLoad afsdafsdf");
@@ -60,14 +67,32 @@ export class SigninPage {
       });
     }).catch(er=>{
         this.loadingprovider.removeLoadingView()
-        this.alertprovider.presentAlert('Login failed','Please check Email and Password again!')
+        this.alertprovider.presentAlert('Login failed',er)
     })
   }
 
-  gotoforgotpassword() {}
+  gotoforgotpassword() {
+      this.alertprovider.showAlertWithMessage().then(res=>{
+
+          this.loadingprovider.showLoadingView()
+          this.apiservice.forgotPassword(res).then(re=>{
+            this.loadingprovider.removeLoadingView()
+              this.toastprovider.create(re['message'],false, 2000)
+          }).catch(er=>{
+            console.log("this is return result", er)
+            this.loadingprovider.removeLoadingView()
+            this.toastprovider.create(er['message'])
+          })
+
+      }).catch(er=>{
+        this.loadingprovider.removeLoadingView()
+      })
+  }
 
   gotosignup() {
     console.log("this is cliekd");
     this.navCtrl.push('SignupPage')
   }
+
+
 }

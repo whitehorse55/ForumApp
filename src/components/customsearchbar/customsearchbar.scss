@@ -1,0 +1,48 @@
+customsearchbar {
+  padding: 0 !important;
+  width: 100%;
+  height: auto;
+
+  // .searchbar{
+  //     display: inline-block;
+  //     color :map-get($map: $colors, $key: blackcolor);
+  //     background-color: transparent;
+  //     input.searchbar-input {
+  //         background-color:$font-card;
+  //         color :map-get($map: $colors, $key: extralight);
+
+  //     }
+  //     .searchbar-ios {
+  //         background-color: $font-card;
+  //         color :map-get($map: $colors, $key: extralight);
+  //     }
+  // }
+
+
+  .cancel_button{
+      width: 15%;
+      display: inline-block;
+  }
+
+  .spinner-container {
+      margin-top: 70px;
+      width: 100%;
+      text-align: center;
+      // padding: 10px;
+
+      ion-spinner {
+        * {
+          width: 28px;
+          height: 28px;
+          stroke: black;
+          fill: black;
+        }
+
+        &.spinner-circles circle,
+        &.spinner-bubbles circle,
+        &.spinner-dots circle {
+          fill: black;
+        }
+      }
+    }
+}

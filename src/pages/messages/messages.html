@@ -1,0 +1,18 @@
+
+
+<ion-header>
+    <custombar [title]="'Direct Message'" [type]="'home'" (onclickback)="onclickbackbutton($event)"></custombar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let item of userlist; let i = index;" (click)="onclickitem(i)" >
+      <ion-avatar item-left>
+        <img  *ngIf="item.profile_photo"  src="{{photourl}}{{item.profile_photo}}" >
+      </ion-avatar>
+      <ion-label>
+        {{item.name}} ( {{item.location}} )
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

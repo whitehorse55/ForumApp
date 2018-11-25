@@ -1,4 +1,5 @@
 
+
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -23,6 +24,10 @@ import { LoadingProvider } from '../providers/loading/loading';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { MessageProvider } from '../providers/message/message';
+// import { FileOpener } from '@ionic-native/file-opener';
+import { DocumentViewer } from '@ionic-native/document-viewer';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
+import { Keyboard } from '@ionic-native/keyboard';
 @NgModule({
   declarations: [
     MyApp,
@@ -32,10 +37,12 @@ import { MessageProvider } from '../providers/message/message';
     BrowserModule,
     IonicModule.forRoot(MyApp,{
       scrollPadding: false,
-      scrollAssist: false
+      scrollAssist: true,
+      autoFocusAssist: true
     }),
     HttpClientModule,
     HttpModule,
+    IonicImageViewerModule
 
   ],
   bootstrap: [IonicApp],
@@ -61,7 +68,10 @@ import { MessageProvider } from '../providers/message/message';
     LoadingProvider,
     InAppBrowser,
     EmailComposer,
-    MessageProvider
+    MessageProvider,
+    DocumentViewer,
+    Keyboard
+    // FileOpener
   ]
 })
 export class AppModule {}

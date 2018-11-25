@@ -41,7 +41,13 @@ export class OurpartnessPage {
     this.loadingprovider.showLoadingView()
     this.apiservice.getBannerInfo().then(res=>{
         this.loadingprovider.removeLoadingView()
-        this.banner_array = res['data'];
+        console.log("eteteteetet" , res['data'])
+        if(res)
+        {
+          this.banner_array = res['data'];
+        }else{
+        }
+
     }).catch(er=>{
       this.loadingprovider.removeLoadingView()
     })

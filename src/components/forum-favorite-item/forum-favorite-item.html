@@ -1,19 +1,20 @@
 <ion-card>
     <ion-item no-padding>
       <ion-avatar item-start>
-        <img  src="assets/imgs/man2.jpeg"/>
+          <img  *ngIf="myinfo.profile_photo != ''"  src="{{myphoto}}{{myinfo.profile_photo}}" (tap)="onclickuserphoto(index);$event.stopPropagation();"/>
+          <img  *ngIf="myinfo.profile_photo == ''" (tap)="onclickuserphoto(index);$event.stopPropagation();"  src="assets/imgs/man2.jpeg"/>
       </ion-avatar>
-      <div class="post_user_details">
+      <div (tap)="onclickuserphoto(index);$event.stopPropagation();" class="post_user_details">
         <h2>{{myinfo.name}}</h2>
       </div>
-      <!-- <button ion-button clear icon-only color="bordercolor" (tap)="postpopover($event)"> -->
-      <!-- <button ion-button clear icon-only color="bordercolor" >
-        <ion-icon name='ios-arrow-down-outline'></ion-icon>
-      </button> -->
+      <button *ngIf="myid == myinfo.user_id"  ion-button clear icon-only color="secondary" (click)="onclickdeletebutton();$event.stopPropagation();">
+        <ion-icon name="trash" class="deleteIcon"  color="secondary"></ion-icon>
+      </button>
     </ion-item>
 
     <!-- <img (tap)="viewpost()" src="assets/img/post1.png"/> -->
-    <!-- <img  class="forum_image" *ngIf="myinfo.photo != ''"  src="{{myphoto}}{{myinfo.photo}}"/> -->
+
+    <img  class="forum_image"  #myImage *ngIf="myinfo.photo != ''"  src="{{myphoto}}{{myinfo.photo}}" (click)="presentImage(myImage);$event.stopPropagation();"/>
 
     <ion-card-content>
       <p>{{myinfo.an_content}}</p>

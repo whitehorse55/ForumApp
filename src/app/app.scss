@@ -30,3 +30,36 @@
   height: 100%;
   z-index: -1;
 }
+
+.myalert .alert-message{
+
+}
+
+.myalert .alert-wrapper{
+  margin-top: 60%;
+}
+
+ion-modal.inset-modal{
+  background-color: rgba(0,0,0,.5) !important;
+  transition: opacity .25s ease-in-out;
+  padding :20vh 10vw;
+}
+
+ion-modal.inset-modal .modal-wrapper{
+  border-radius: map-get($map: $border_radius, $key:radius_5);
+}
+
+
+
+ion-modal.inset-modal-match{
+  background-color: rgba(0,0,0,.5) !important;
+  transition: opacity .25s ease-in-out;
+  padding :1vh 1vw;
+}
+
+
+// .input-cover {
+//   position: static;
+// }
+
+.scroll-content { padding-bottom: 0!important;}

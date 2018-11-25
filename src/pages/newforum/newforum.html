@@ -18,23 +18,17 @@
 
 <ion-content class="content" padding>
   <div class="layer"></div>
-  <ion-item>
+  <ion-item  *ngIf="type == 'forum'">
     <ion-label floating>Title</ion-label>
-    <ion-input [(ngModel)]="title" type=""></ion-input>
+    <ion-input  [(ngModel)]="title" type=""></ion-input>
+    <!-- <ion-input *ngIf="type != 'forum'"  [(ngModel)]="title" type=""></ion-input> -->
   </ion-item>
 
   <ion-item>
     <ion-label floating>Add text</ion-label>
-    <ion-textarea [(ngModel)]="question"></ion-textarea>
+    <ion-textarea *ngIf="type == 'forum'" [(ngModel)]="question"></ion-textarea>
+    <ion-textarea *ngIf="type != 'forum'" [(ngModel)]="question"></ion-textarea>
   </ion-item>
-
-  <!-- <ion-item>
-    <ion-label>Category : </ion-label>
-    <ion-select class="myCustomSelect" [(ngModel)]="category" name="category">
-      <ion-option *ngFor="let item of categoryList" value="{{item.ca_id}}">{{item.ca_name}}</ion-option>
-    </ion-select>
-  </ion-item> -->
-
 
   <ion-item no-lines>
     <customcamera [title]="'Add an image'" [type]="'photo'" (onclickButton)="getPhoto($event)"></customcamera>
@@ -56,5 +50,7 @@
 </ion-content>
 
 <ion-footer text-center>
-  <button ion-button class="mybutton" color="mainbutton"  (click)="onclickSendButton()">Send</button>
+  <ion-toolbar>
+      <button ion-button class="mybutton" color="mainbutton"  (click)="onclickSendButton()">Send</button>
+  </ion-toolbar>
 </ion-footer>

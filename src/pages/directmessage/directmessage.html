@@ -1,0 +1,26 @@
+
+<ion-content #content class="content">
+
+  <ion-item [style.height.%]="10" text-center>
+      Send Messsage
+  </ion-item>
+
+  <ion-item [style.height.%]="70">
+    <ion-textarea [(ngModel)]="messagContent" pleacholder="please fill message content">
+
+    </ion-textarea>
+  </ion-item>
+
+  <ion-item  text-center  no-lines [style.height.%]="10">
+      <button (click)="onclickcancelbutton()"  large class="mybutton"  text-center ion-button color="secondary">
+          Cancel
+      </button>
+  </ion-item>
+
+  <ion-item  text-center  no-lines [style.height.%]="10">
+      <button (click)="onclicksendbutton()" large class="mybutton"  text-center ion-button color="secondary">
+          Send
+      </button>
+  </ion-item>
+
+</ion-content>

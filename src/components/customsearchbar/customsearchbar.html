@@ -1,0 +1,5 @@
+<div *ngIf="searching" class="spinner-container">
+    <ion-spinner name="bubbles">Loading</ion-spinner>
+</div>
+
+<ion-searchbar #input  [style.width.%]="100" [(ngModel)]="searchTerm" [formControl]="searchControl"   (keyup)="onSearchInput()" class="searchbar" placeholder="Search"></ion-searchbar>

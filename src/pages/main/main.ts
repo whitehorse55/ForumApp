@@ -1,8 +1,12 @@
+import { Constant } from './../../Constant/constant';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { ApiProvider } from "./../../providers/api/api";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { LocalstorageProvider } from "../../providers/localstorage/localstorage";
+import { DocumentViewerOptions, DocumentViewer } from '@ionic-native/document-viewer';
+// import { FileOpener } from '@ionic-native/file-opener';
 
 /**
  * Generated class for the MainPage page.
@@ -22,7 +26,10 @@ export class MainPage {
     public navParams: NavParams,
     public apiservice: ApiProvider,
     public localprovider : LocalstorageProvider,
-    public emailcomposer : EmailComposer
+    public emailcomposer : EmailComposer,
+    public document : DocumentViewer,
+    public inappbrowser : InAppBrowser
+    // public fileopener : FileOpener
   ) {}
 
   ionViewDidLoad() {
@@ -53,6 +60,7 @@ export class MainPage {
 
   onclickHouseRoles() {
     this.navCtrl.push("HouserulePage");
+    // this.openTermsDoc()
   }
 
   onclickContact() {
@@ -66,10 +74,26 @@ export class MainPage {
     this.navCtrl.setRoot('SigninPage')
   }
 
+  onclickmessages()
+  {
+    this.navCtrl.push('MessagesPage');
+  }
+
+  onclickTermsButton()
+  {
+    this.openTermsDoc()
+  }
+
+  openTermsDoc()
+  {
+    var inappbrowser = this.inappbrowser.create(Constant.TERMS_URL, '_blank');
+    inappbrowser.show()
+  }
+
   sendmessage()
   {
     let email = {
-      to: [],
+      to: ["Info@countrysport.org"],
       cc: [],
       bcc: [],
       attachment: [],

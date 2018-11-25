@@ -1,0 +1,32 @@
+<ion-header>
+    <custombar [title]="'History'" [type]="'category'" (onclickback)="onclickbackbutton($event)"></custombar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-card *ngFor="let item of messageList; let i = index;" >
+        <ion-item>
+          <ion-avatar item-start>
+            <img *ngIf="item.profile_photo != ''"  src="{{photourl}}{{item.profile_photo}}"/>
+            <img *ngIf="item.profile_photo == ''"  src="assets/imgs/profile.png"/>
+
+          </ion-avatar>
+          <div class="post_user_details">
+            <h2>{{item.name}}</h2><h6> {{item.created}}</h6>
+          </div>
+          <button *ngIf="myid == item.from"  ion-button clear icon-only color="secondary" (click)="deletemessage(item, i)" >
+            <ion-icon color="secondary" ios="ios-trash" md="md-trash"></ion-icon>
+          </button>
+        </ion-item>
+
+        <img *ngIf="item.photo != ''"  src="{{photourl}}{{item.photo}}" #myImage (click)="presentImage(myImage);$event.stopPropagation();"/>
+
+        <ion-card-content>
+          <p>{{item.message}}</p>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-fab bottom right>
+        <button color="mainbutton" ion-fab (click)="onclickfabbutton()"> <ion-icon ios="ios-add" md="md-add"></ion-icon></button>
+    </ion-fab>
+</ion-content>

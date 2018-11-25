@@ -1,5 +1,11 @@
 page-answer {
-
+  .mycontent
+  {
+    background-image: none;
+    background-color: map_get($colors, light);
+  }
+  background-image: none;
+  background-color: map_get($colors, light);
   ion-list-header{
     background-color: transparent;
     ion-item{
@@ -24,6 +30,10 @@ page-answer {
       position: relative;
       flex: 1;
       padding: 8px;
+      #messageInputBox{
+        position : initial !important;
+      }
+
       textarea {
         flex: 1;
         font-size: 15px;
@@ -54,10 +64,11 @@ page-answer {
       text-transform: capitalize;
       font-weight: normal;
       margin: 8px;
-      align-self: flex-end;
+      // align-self: flex-end;
       height: map_get($height, btnheight);
       width: map_get($height, btnheight);
       border-radius: 100%;
     }
   }
+
 }

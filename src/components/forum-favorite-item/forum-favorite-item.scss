@@ -1,7 +1,7 @@
 forum-favorite-item {
   .forum_image {
     width: 100%;
-    height: 150px;
+    height: 200px;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -31,7 +31,7 @@ ion-card {
         margin-bottom: 0;
     }
     ion-row {
-        border-top: 1px solid map_get($colors, bordercolor);
+        // border-top: 1px solid map_get($colors, bordercolor);
         ion-col {
             padding: 0;
             display: flex;

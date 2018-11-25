@@ -42,7 +42,8 @@ export class SignupPage {
       email: "",
       location: "",
       password: "",
-      confirmpassword : ""
+      confirmpassword : "",
+      isChecked : true
     };
   }
 
@@ -124,6 +125,8 @@ export class SignupPage {
         quality: 100, // picture quality
         targetHeight: 300,
         targetWidth: 200,
+        correctOrientation : true,
+        allowEdit : true,
         destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE,
@@ -164,6 +167,13 @@ export class SignupPage {
           console.log("this is upload error", err)
       })
     })
+  }
+
+  onclicktermbutton()
+  {
+    // var inappbrowser = this.inappbroswser.create(Constant.TERMS_URL, '_blank');
+    // inappbrowser.show();
+    this.navCtrl.push("HouserulePage");
   }
 
 }

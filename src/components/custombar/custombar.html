@@ -1,7 +1,8 @@
-  <ion-toolbar text-center color="extralight">
-    <ion-buttons left>
+  <ion-toolbar text-center style="color : #70b849;">
+    <ion-buttons right>
       <button color="secondary" ion-button icon-only (click)="onclickbackbutton()">
-        <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+        <ion-icon *ngIf="type != 'home'"  ios="ios-menu" md="md-menu"></ion-icon>
+        <ion-icon *ngIf="type == 'home'" ios="ios-home" md="md-home"></ion-icon>
       </button>
     </ion-buttons>
 

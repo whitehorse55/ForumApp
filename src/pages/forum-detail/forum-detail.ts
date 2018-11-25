@@ -1,3 +1,4 @@
+import { ImageViewerController } from 'ionic-img-viewer';
 import { LoadingProvider } from './../../providers/loading/loading';
 import { ApiProvider } from './../../providers/api/api';
 import { Component } from "@angular/core";
@@ -27,6 +28,7 @@ export class ForumDetailPage {
 
   categoryinfo  = "1"
   categoryArray = []
+  categorySearchArray = []
   title = ""
 
   constructor(
@@ -36,7 +38,8 @@ export class ForumDetailPage {
     public apiservice : ApiProvider,
     public toastservice : ToastserviceProvider,
     public loadingprovider : LoadingProvider,
-    public popCtrl : PopoverController
+    public popCtrl : PopoverController,
+    public _imageViewerCtrl : ImageViewerController
   ) {
 
   }
@@ -47,6 +50,7 @@ export class ForumDetailPage {
     this.categoryinfo = this.navParams.get('info');
     this.title = this.categoryinfo['ca_name']
     this.categoryArray = []
+    this.categorySearchArray = []
     console.log("ionViewDidLoad", this.categoryinfo);
   }
 
@@ -62,6 +66,7 @@ export class ForumDetailPage {
       {
         let data = res['data']
         this.categoryArray = data.reverse();
+        this.categorySearchArray = data.reverse();
         this.loadingprovider.removeLoadingView()
         console.log("resifo", this.categoryArray);
       }else{
@@ -88,30 +93,72 @@ export class ForumDetailPage {
   onclickdeletebutton(index)
   {
     let item_info = this.categoryArray[index]
-    let popover = this.popCtrl.create('PopoverPage')
-    popover.present();
+    // let popover = this.popCtrl.create('PopoverPage')
+    // popover.present();
 
-    popover.onDidDismiss(res=>{
-      console.log("this is dismiss");
-      if(res['type'] == 'delete')
-      {
-          this.apiservice.deleteMyForum(item_info['fo_id']).then(res=>{
-            this.categoryArray.splice(index, 1);
-          }).catch(er=>{
+    // popover.onDidDismiss(res=>{
+    //   console.log("this is dismiss");
+    //   if(res['type'] == 'delete')
+    //   {
+    //       this.apiservice.deleteMyForum(item_info['fo_id']).then(res=>{
+    //         this.categoryArray.splice(index, 1);
+    //       }).catch(er=>{
 
-          })
-      }
+    //       })
+    //   }
+    // })
+    this.loadingprovider.showLoadingView()
+    this.apiservice.deleteMyForum(item_info['fo_id']).then(res=>{
+      this.loadingprovider.removeLoadingView()
+      this.categoryArray.splice(index, 1);
+    }).catch(er=>{
+      this.loadingprovider.removeLoadingView()
     })
 
   }
 
+  onclickuserphoto(info)
+  {
+    if(info['isMe'])
+    {
+
+    }else{
+      let item_info = this.categoryArray[info['index']]
+      this.modalCtrl.create('DirectmessagePage', {info : item_info},{cssClass : 'inset-modal'}).present()
+    }
+
+  }
+
+  presentImage(url)
+  {
+
+    const imageViewer = this._imageViewerCtrl.create(url);
+    imageViewer.present();
+
+    setTimeout(() => imageViewer.dismiss(), 1000);
+    imageViewer.onDidDismiss(() => alert('Viewer dismissed'));
+  }
+
+
   onclickfabbutton() {
     let profileModal = this.modalCtrl.create("NewforumPage", {
-      ca_id: this.categoryinfo['ca_id']
+      ca_id: this.categoryinfo['ca_id'], type : "forum"
     });
     profileModal.present();
     profileModal.onDidDismiss(res=>{
       this.getCategoryInfo()
     })
+  }
+
+  onchangeSearch(info)
+  {
+    if(info.length == 0)
+    {
+      console.log("this is fin==", info);
+      this.categorySearchArray = this.categoryArray
+    }else{
+      console.log("this==", info);
+      this.categorySearchArray = info
+    }
   }
 }

@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <custombar [title]="'Category'" (onclickback)="onclickbackbutton($event)"></custombar>
+  <custombar [title]="'CATEGORIES'" [type]="'home'" (onclickback)="onclickbackbutton($event)"></custombar>
 </ion-header>
 
 
@@ -14,18 +14,18 @@
 
   <ion-list clear>
     <ion-list-header no-lines text-center>
-      <p>Welcome to the Country Sport Forum.</p>
+      <!-- <p>Welcome to the Country Sport Forum.</p> -->
       <p>Please choose a category</p>
     </ion-list-header>
 
     <ng-container *ngFor="let item of categoryList ; let i = index;">
-      <ion-item *ngIf="item.type == 0" no-lines text-center (click)="onclickitems(i)">
+      <ion-item *ngIf="item.type != 1" no-lines text-center (click)="onclickitems(i)">
         <button ion-button large>{{item.ca_name}}</button>
       </ion-item>
     </ng-container>
 
     <ion-item no-lines>
-       <ion-label color="extralight"  style="font-weight : bold; font-size : 14pt;" text-center>For SALE</ion-label>
+       <ion-label color="extralight"  style="font-weight : bold; font-size : 14pt;" text-center>FOR SALE</ion-label>
     </ion-item>
 
     <ng-container *ngFor="let item of categoryList ; let i = index;">

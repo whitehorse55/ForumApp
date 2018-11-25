@@ -1,5 +1,17 @@
 page-signin {
   ion-content {
+    ion-item{
+      background-color: transparent;
+    }
+
+    ion-checkbox{
+      button.item-cover{
+        left: initial;
+        right: 0;
+        width: 15%;
+      }
+    }
+
     display: flex;
     .scroll-content {
       display: flex;
@@ -67,6 +79,12 @@ page-signin {
             margin-right: map-get($map: $custom_padding, $key:padding_10);
           }
         }
+
+        .termservice
+        {
+          display: flex;
+          justify-content: space-between;
+        }
       }
       ion-footer {
         display: flex;
@@ -77,6 +95,10 @@ page-signin {
           border-radius: 0;
         }
       }
+    }
+
+    .myalert .alert-wrapper{
+      margin-top: 40%;
     }
   }
 }

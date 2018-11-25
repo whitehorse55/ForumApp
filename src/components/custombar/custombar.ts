@@ -14,6 +14,7 @@ export class CustombarComponent {
 
 
   @Input() title : string
+  @Input() type : string
   @Output() onclickback : EventEmitter<any> = new EventEmitter()
 
   constructor() {

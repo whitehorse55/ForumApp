@@ -1,0 +1,12 @@
+page-directmessage {
+    .content {
+        ion-textarea {
+            min-height: 100px;
+        }
+        .mybutton {
+            border-radius: map-get($map: $border_radius, $key:radius_5);
+            width: 80%;
+            height: 40px;
+        }
+    }
+}
